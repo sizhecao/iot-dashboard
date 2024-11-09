@@ -16,7 +16,7 @@ export const setupErrorHandling = (socket: Socket): void => {
     logger.error(`Connection error for client ${socket.id}:`, error);
     socket.emit('connectionError', {
       message: 'Failed to connect to server',
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
   });
 
@@ -25,7 +25,7 @@ export const setupErrorHandling = (socket: Socket): void => {
     logger.error(`Connection timeout for client ${socket.id}`);
     socket.emit('connectionTimeout', {
       message: 'Connection timed out',
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
   });
 
@@ -44,16 +44,16 @@ export const setupErrorHandling = (socket: Socket): void => {
     logger.error(`Reconnection failed for client ${socket.id}`);
     socket.emit('reconnectionFailed', {
       message: 'Failed to reconnect to server',
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
   });
 
   // Process uncaught errors
   process.on('uncaughtException', (error) => {
     logger.error('Uncaught Exception:', error);
-    socket.emit('error', { 
+    socket.emit('error', {
       message: 'Internal server error',
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
   });
 };

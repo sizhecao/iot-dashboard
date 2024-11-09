@@ -6,20 +6,20 @@ import { logger } from '../utils/logger';
 
 export class WebSocketService {
   private io: SocketServer;
-  private readonly pingInterval = 1000;     // 1 second
-  private readonly pingTimeout = 30000;      // 3 seconds
+  private readonly pingInterval = 1000; // 1 second
+  private readonly pingTimeout = 30000; // 3 seconds
   private readonly connectionTimeout = 5000; // 5 seconds
   private connectedClients: Map<string, Socket>;
 
   constructor(httpServer: HttpServer) {
     this.io = new SocketServer(httpServer, {
       cors: {
-        origin: process.env.FRONTEND_URL || "http://127.0.0.1:3000",
-        methods: ["GET", "POST"]
+        origin: process.env.FRONTEND_URL || 'http://127.0.0.1:3000',
+        methods: ['GET', 'POST'],
       },
       pingInterval: this.pingInterval,
       pingTimeout: this.pingTimeout,
-      connectTimeout: this.connectionTimeout
+      connectTimeout: this.connectionTimeout,
     });
 
     this.connectedClients = new Map();
@@ -47,7 +47,7 @@ export class WebSocketService {
     });
 
     // Set up event handlers
-    setupEventHandlers(socket);  // Pass 'this' if needed for broadcasting
+    setupEventHandlers(socket); // Pass 'this' if needed for broadcasting
     setupErrorHandling(socket);
 
     // Handle disconnect
@@ -55,7 +55,6 @@ export class WebSocketService {
       this.handleDisconnect(socket, reason);
     });
   }
-
 
   private handleDisconnect(socket: Socket, reason: string): void {
     this.connectedClients.delete(socket.id);

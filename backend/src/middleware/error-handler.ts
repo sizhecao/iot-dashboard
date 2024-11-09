@@ -14,18 +14,18 @@ export const errorHandler: ErrorRequestHandler = (
 
     if (error instanceof CustomError) {
       res.status(error.statusCode).json({
-        error: error.message
+        error: error.message,
       });
       return;
     }
 
     res.status(500).json({
-      error: 'Internal server error'
+      error: 'Internal server error',
     });
   } catch (err) {
     logger.error('Error in error handler:', err);
     res.status(500).json({
-      error: 'Internal server error in error handler'
+      error: 'Internal server error in error handler',
     });
   }
 };

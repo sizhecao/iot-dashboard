@@ -28,7 +28,6 @@ app.use(errorHandler);
 //   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 // });
 
-
 httpServer.listen(port, () => {
   logger.info(`Server is running on port ${port}`);
 });

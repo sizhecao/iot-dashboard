@@ -1,4 +1,4 @@
-import { VALID_DEVICE_TYPES } from "../types/device";
+import { VALID_DEVICE_TYPES } from '../types/device';
 
 // Error handling utilities
 export class CustomError extends Error {
@@ -21,7 +21,10 @@ export class DeviceNotFoundError extends CustomError {
 
 export class InvalidDeviceTypeError extends CustomError {
   constructor(type: string) {
-    super(400, `Invalid device type: ${type}. Valid types are: ${VALID_DEVICE_TYPES.join(', ')}`);
+    super(
+      400,
+      `Invalid device type: ${type}. Valid types are: ${VALID_DEVICE_TYPES.join(', ')}`
+    );
   }
 }
 

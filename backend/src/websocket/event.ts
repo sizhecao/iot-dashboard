@@ -3,9 +3,7 @@ import { Socket } from 'socket.io';
 import { logger } from '../utils/logger';
 import { WebSocketService } from '.';
 
-export const setupEventHandlers = (
-  socket: Socket
-): void => {
+export const setupEventHandlers = (socket: Socket): void => {
   // Handle client subscribing to device updates
   socket.on('subscribeToDevice', (deviceId: string) => {
     socket.join(`device:${deviceId}`);
