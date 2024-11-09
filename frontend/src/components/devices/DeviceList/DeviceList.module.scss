@@ -24,9 +24,10 @@
   .deviceList.grid {
     grid-template-columns: 1fr; // 1 column on mobile
   }
-  
+
   .deviceList {
-    &.grid, &.list {
+    &.grid,
+    &.list {
       padding: 16px;
     }
   }

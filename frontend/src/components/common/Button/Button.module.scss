@@ -32,18 +32,18 @@
 
   // Variants
   &.primary {
-    background-color: #0f172a;  // Deep blue-gray
+    background-color: #0f172a; // Deep blue-gray
     color: white;
     &:hover:not(:disabled) {
-      background-color: #1e293b;  // Lighter deep blue-gray
+      background-color: #1e293b; // Lighter deep blue-gray
     }
   }
 
   &.secondary {
-    background-color: #64748b;  // Slate
+    background-color: #64748b; // Slate
     color: white;
     &:hover:not(:disabled) {
-      background-color: #475569;  // Darker slate
+      background-color: #475569; // Darker slate
     }
   }
 
@@ -52,7 +52,7 @@
     border: 1px solid #0f172a;
     color: #0f172a;
     &:hover:not(:disabled) {
-      background-color: #f8fafc;  // Very light slate
+      background-color: #f8fafc; // Very light slate
     }
   }
 
@@ -60,7 +60,7 @@
     background-color: transparent;
     color: #0f172a;
     &:hover:not(:disabled) {
-      background-color: #f1f5f9;  // Light slate
+      background-color: #f1f5f9; // Light slate
     }
   }
 }

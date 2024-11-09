@@ -15,7 +15,7 @@ describe('Header', () => {
   test('calls onMenuClick when menu button is clicked', () => {
     const mockOnMenuClick = vi.fn();
     render(<Header onMenuClick={mockOnMenuClick} />);
-    
+
     fireEvent.click(screen.getByLabelText('Toggle menu'));
     expect(mockOnMenuClick).toHaveBeenCalled();
   });

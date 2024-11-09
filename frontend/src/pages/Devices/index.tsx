@@ -51,17 +51,17 @@ const DevicesPage: React.FC<PageProps> = ({ className }) => {
   }, [dispatch]);
 
   // Log for debugging
-  useEffect(() => {
-    console.log('Current devices:', devices);
-    console.log('Current deviceData:', deviceData);
-    console.log('WebSocket status:', wsStatus);
-  }, [devices, deviceData, wsStatus]);
+  // useEffect(() => {
+  //   console.log('Current devices:', devices);
+  //   console.log('Current deviceData:', deviceData);
+  //   console.log('WebSocket status:', wsStatus);
+  // }, [devices, deviceData, wsStatus]);
 
   const devicesList: DeviceWithData[] = useMemo(() => {
-    return Object.values(devices).map(device => ({
+    return Object.values(devices).map((device) => ({
       ...device,
       currentValue: deviceData[device.id]?.value,
-      lastUpdated: deviceData[device.id]?.timestamp
+      lastUpdated: deviceData[device.id]?.timestamp,
     }));
   }, [devices, deviceData]);
 

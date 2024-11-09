@@ -14,7 +14,7 @@ const initialState: DeviceState = {
   devices: {},
   deviceData: {},
   loading: false,
-  error: null
+  error: null,
 };
 
 // Async thunks
@@ -32,7 +32,15 @@ export const fetchDevices = createAsyncThunk(
 
 export const createDevice = createAsyncThunk(
   'devices/createDevice',
-  async ({ type, name, config }: { type: string; name: string; config: DeviceConfig }) => {
+  async ({
+    type,
+    name,
+    config,
+  }: {
+    type: string;
+    name: string;
+    config: DeviceConfig;
+  }) => {
     try {
       const response = await api.devices.create(type, name, config);
       return response.data;
@@ -76,7 +84,10 @@ const deviceSlice = createSlice({
       const { deviceId } = action.payload;
       state.deviceData[deviceId] = action.payload;
     },
-    deviceStatusChanged(state, action: PayloadAction<{ deviceId: string; status: Device['status'] }>) {
+    deviceStatusChanged(
+      state,
+      action: PayloadAction<{ deviceId: string; status: Device['status'] }>
+    ) {
       const { deviceId, status } = action.payload;
       if (state.devices[deviceId]) {
         state.devices[deviceId].status = status;
@@ -85,6 +96,13 @@ const deviceSlice = createSlice({
     deviceAdded(state, action: PayloadAction<Device>) {
       const device = action.payload;
       state.devices[device.id] = device;
+    },
+    deviceRemoved(state, action: PayloadAction<string>) {
+      const deviceId = action.payload;
+      if (state.devices[deviceId]) {
+        delete state.devices[deviceId];
+        delete state.deviceData[deviceId];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -97,7 +115,7 @@ const deviceSlice = createSlice({
         console.log('fetchDevices fulfilled with payload:', action.payload);
         state.loading = false;
         if (action.payload) {
-          action.payload.forEach(device => {
+          action.payload.forEach((device) => {
             state.devices[device.id] = device;
           });
         }
@@ -112,8 +130,13 @@ const deviceSlice = createSlice({
           state.devices[action.payload.id] = action.payload;
         }
       });
-  }
+  },
 });
 
-export const { deviceDataReceived, deviceStatusChanged, deviceAdded } = deviceSlice.actions;
+export const {
+  deviceDataReceived,
+  deviceStatusChanged,
+  deviceAdded,
+  deviceRemoved,
+} = deviceSlice.actions;
 export default deviceSlice.reducer;

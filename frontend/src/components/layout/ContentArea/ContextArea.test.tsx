@@ -13,10 +13,7 @@ describe('ContentArea', () => {
 
   it('renders title and description when provided', () => {
     render(
-      <ContentArea 
-        title="Test Title" 
-        description="Test Description"
-      >
+      <ContentArea title="Test Title" description="Test Description">
         <div>Content</div>
       </ContentArea>
     );

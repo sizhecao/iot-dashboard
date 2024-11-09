@@ -2,11 +2,16 @@ import { io, Socket } from 'socket.io-client';
 import config from '../../config/env';
 import { Device, DeviceData, WSEventMap } from '../../types';
 
-export type WebSocketStatus = 'connecting' | 'connected' | 'disconnected' | 'error';
+export type WebSocketStatus =
+  | 'connecting'
+  | 'connected'
+  | 'disconnected'
+  | 'error';
 
 export interface WSEventHandlers {
   onDeviceData?: (data: DeviceData) => void;
-  onDeviceAdded?: (device: Device) => void; 
+  onDeviceAdded?: (device: Device) => void;
+  onDeviceRemoved?: (deviceId: string) => void;
   onStatusChange?: (status: WebSocketStatus) => void;
   onError?: (error: WSEventMap['error'] | Error) => void;
 }
@@ -66,6 +71,11 @@ export class WebSocketManager {
     this.socket.on('deviceAdded', (device: Device) => {
       console.log('New device added:', device);
       this.handlers.onDeviceAdded?.(device);
+    });
+
+    this.socket.on('deviceRemoved', (deviceId: string) => {
+      console.log('Current device removed:', deviceId);
+      this.handlers.onDeviceRemoved?.(deviceId);
     });
   }
 

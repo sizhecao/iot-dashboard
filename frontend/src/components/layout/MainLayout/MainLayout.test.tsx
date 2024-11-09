@@ -4,11 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import MainLayout from './index';
 
 const renderWithRouter = (component: React.ReactNode) => {
-  return render(
-    <BrowserRouter>
-      {component}
-    </BrowserRouter>
-  );
+  return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
 describe('MainLayout', () => {
@@ -22,5 +18,4 @@ describe('MainLayout', () => {
     const sidebar = screen.getByRole('complementary');
     expect(sidebar).toBeVisible();
   });
-
 });

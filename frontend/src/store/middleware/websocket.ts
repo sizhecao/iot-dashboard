@@ -1,6 +1,10 @@
 import { Action, Middleware } from '@reduxjs/toolkit';
 import { WebSocketManager } from '../../services/websocket/WebSocketManager';
-import { deviceAdded, deviceDataReceived } from '../slices/deviceSlice';
+import {
+  deviceAdded,
+  deviceDataReceived,
+  deviceRemoved,
+} from '../slices/deviceSlice';
 import { wsStatusChanged, wsErrorOccurred } from '../slices/websocketSlice';
 
 interface WebSocketAction extends Action {
@@ -13,14 +17,14 @@ const isWebSocketAction = (action: unknown): action is WebSocketAction => {
     typeof action === 'object' &&
     action !== null &&
     'type' in action &&
-    (
-      action.type === 'devices/subscribeToDevice' ||
-      action.type === 'devices/unsubscribeFromDevice'
-    )
+    (action.type === 'devices/subscribeToDevice' ||
+      action.type === 'devices/unsubscribeFromDevice')
   );
 };
 
-export const createWebSocketMiddleware = (wsManager: WebSocketManager): Middleware => {
+export const createWebSocketMiddleware = (
+  wsManager: WebSocketManager
+): Middleware => {
   return (store) => {
     // Set up WebSocket event handlers
     wsManager.setEventHandlers({
@@ -32,15 +36,25 @@ export const createWebSocketMiddleware = (wsManager: WebSocketManager): Middlewa
         // Automatically subscribe to the new device's updates
         wsManager.subscribeToDevice(device.id);
       },
+      onDeviceRemoved: (deviceId) => {
+        // Unsubscribe from the device first
+        wsManager.unsubscribeFromDevice(deviceId);
+        // Then remove it from the store
+        store.dispatch(deviceRemoved(deviceId));
+      },
       onStatusChange: (status) => {
         store.dispatch(wsStatusChanged(status));
       },
       onError: (error) => {
-        store.dispatch(wsErrorOccurred(error instanceof Error ? error.message : error.message));
-      }
+        store.dispatch(
+          wsErrorOccurred(
+            error instanceof Error ? error.message : error.message
+          )
+        );
+      },
     });
 
-    return next => action => {
+    return (next) => (action) => {
       if (isWebSocketAction(action)) {
         console.log('Action:', action.type);
         switch (action.type) {

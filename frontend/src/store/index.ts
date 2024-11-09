@@ -10,10 +10,10 @@ const webSocketMiddleware = createWebSocketMiddleware(wsManager);
 export const store = configureStore({
   reducer: {
     devices: deviceReducer,
-    websocket: websocketReducer
+    websocket: websocketReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(webSocketMiddleware)
+    getDefaultMiddleware().concat(webSocketMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

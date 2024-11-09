@@ -8,12 +8,12 @@ export interface LoadingSpinnerProps {
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'medium',
-  className = ''
+  className = '',
 }) => {
   const sizeMap = {
     small: '16px',
     medium: '24px',
-    large: '32px'
+    large: '32px',
   };
 
   return (

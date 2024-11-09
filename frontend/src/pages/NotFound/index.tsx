@@ -12,11 +12,7 @@ const NotFoundPage: React.FC = () => {
       <div className={styles.content}>
         <h1>404</h1>
         <p>Page not found</p>
-        <Button 
-          onClick={() => navigate('/')}
-          variant="primary"
-          size="medium"
-        >
+        <Button onClick={() => navigate('/')} variant="primary" size="medium">
           Return to Dashboard
         </Button>
       </div>

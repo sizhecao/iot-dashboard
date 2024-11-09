@@ -12,15 +12,12 @@ export interface DeviceListProps {
 const DeviceList: React.FC<DeviceListProps> = ({
   devices,
   className = '',
-  view
+  view,
 }) => {
   return (
     <div className={`${styles.deviceList} ${styles[view]} ${className}`}>
       {devices.map((device) => (
-        <DeviceCard 
-          key={device.id}
-          device={device}
-        />
+        <DeviceCard key={device.id} device={device} />
       ))}
     </div>
   );

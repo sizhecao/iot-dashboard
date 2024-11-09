@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { WebSocketStatus } from "../../services/websocket/WebSocketManager";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { WebSocketStatus } from '../../services/websocket/WebSocketManager';
 
 interface WebSocketState {
   status: WebSocketStatus;
@@ -8,8 +8,8 @@ interface WebSocketState {
 
 const initialState: WebSocketState = {
   status: 'disconnected',
-  error: null
-}
+  error: null,
+};
 
 const websocketSlice = createSlice({
   name: 'websocket',
@@ -23,9 +23,10 @@ const websocketSlice = createSlice({
     },
     wsClearError(state) {
       state.error = null;
-    }
-  }
+    },
+  },
 });
 
-export const { wsStatusChanged, wsErrorOccurred, wsClearError } = websocketSlice.actions;
+export const { wsStatusChanged, wsErrorOccurred, wsClearError } =
+  websocketSlice.actions;
 export default websocketSlice.reducer;

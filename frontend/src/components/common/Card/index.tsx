@@ -14,10 +14,10 @@ const Card: React.FC<CardProps> = ({
   title,
   subtitle,
   className = '',
-  onClick
+  onClick,
 }) => {
   return (
-    <div 
+    <div
       className={`${styles.card} ${onClick ? styles.clickable : ''} ${className}`}
       onClick={onClick}
     >
@@ -27,9 +27,7 @@ const Card: React.FC<CardProps> = ({
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
         </div>
       )}
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

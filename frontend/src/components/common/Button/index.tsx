@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './Button.module.scss';
 import LoadingSpinner from '../LoadingSpinner';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'small' | 'medium' | 'large';
   isLoading?: boolean;
