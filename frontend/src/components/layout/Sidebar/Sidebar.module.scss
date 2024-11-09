@@ -1,0 +1,62 @@
+.sidebar {
+  height: 100%;
+  background-color: white;
+  border-right: 1px solid #e5e7eb;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  padding: 16px 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #4b5563;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 0 8px;
+  transition: all 0.2s ease;
+  gap: 12px;
+
+  &:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+
+  &.active {
+    background-color: #f3f4f6;
+    color: #111827;
+    font-weight: 500;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .title {
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+}
+
+// Collapsed state
+.collapsed {
+  .navItem {
+    justify-content: center;
+    padding: 12px 0;
+    
+    .title {
+      display: none;
+      opacity: 0;
+    }
+  }
+}

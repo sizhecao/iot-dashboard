@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Build outputs
+/dist/
+/build/
+
+# Testing
+/coverage/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Vite
+.vite/
+*.local
+
+# Env files
+.env*
+!.env.example
+
+# Cache
+.cache/
+.npm

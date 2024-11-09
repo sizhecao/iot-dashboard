@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  overflow: hidden; /* Prevent body scrollbar */
+}
+
+#root {
+  height: 100vh; /* Ensure root takes full viewport height */
+}

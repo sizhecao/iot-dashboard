@@ -1,0 +1,33 @@
+.deviceList {
+  &.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Maximum 3 columns
+    gap: 24px;
+    padding: 24px;
+  }
+
+  &.list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .deviceList.grid {
+    grid-template-columns: repeat(2, 1fr); // 2 columns on medium screens
+  }
+}
+
+@media (max-width: 900px) {
+  .deviceList.grid {
+    grid-template-columns: 1fr; // 1 column on mobile
+  }
+  
+  .deviceList {
+    &.grid, &.list {
+      padding: 16px;
+    }
+  }
+}
